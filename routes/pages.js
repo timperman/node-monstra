@@ -33,12 +33,12 @@ module.exports = function(db) {
     db.findPage({ slug: db.getOption('defaultpage').value }, jsonData(res, next));
   });
 
-  router.get('/:slug', function(req, res, next) {
-    db.findPage({ slug: req.params.slug }, jsonData(res, next));
+  router.get('/search', function(req, res, next) {
+    db.getSearchIndex().search({ query: { "*": [req.query.q] }}, jsonData(res, next));
   });
 
-  router.get('/search', function(req, res, next) {
-    db.getSearchIndex().search({ query: { "*": req.query.q }}, jsonData(res, next));
+  router.get('/:slug', function(req, res, next) {
+    db.findPage({ slug: req.params.slug }, jsonData(res, next));
   });
 
   return router;

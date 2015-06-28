@@ -15,7 +15,7 @@
     "serve-favicon": "~2.2.1",
     "xml2js": "~0.4.9",
     "underscore": "~1.8.3",
-    "nodemailer": "~1.4.0",
+    "nodemailer": "~0.7.1",
     "search-index": "~0.5.2"
   }
 }
