@@ -1,14 +1,14 @@
 var express = require('express'),
     gmailer = require('../lib/gmailer');
 
-var renderDefaultPage = function(req, res, next) {
-  db.findPage({ slug: db.getOption('defaultpage').value }, function(err, page) {
-    if (err) res.render('index');
-    else res.render('index', page);
-  });
-};
-
 module.exports = function(db) {
+  var renderDefaultPage = function(req, res, next) {
+    db.findPage({ slug: db.getOption('defaultpage').value }, function(err, page) {
+      if (err) res.render('index');
+      else res.render('index', page);
+    });
+  };
+
   var router = express.Router();
 
   router.get('/', renderDefaultPage);
