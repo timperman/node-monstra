@@ -45,7 +45,7 @@ module.exports = function(db) {
   router.get('/:slug', function(req, res, next) {
     if ( req.params.slug ) {
       var pageSlug = req.params.slug.split(".");
-      db.findPage({ slug: pageSlug[0] }, function(err, page) {
+      db.findPage({ slug: pageSlug[0].toLowerCase() }, function(err, page) {
         if (err) {
           console.log(pageSlug[0], 'cms page not found');
           res.render(pageSlug[0]);
