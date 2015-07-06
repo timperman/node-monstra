@@ -26,7 +26,10 @@ module.exports = function(db) {
           });
         }
         results.hits = _.map(results.hits, function(hit) {
-          if (hit.document.slug.indexOf("-hash-") > 0) {
+          if (req.query.tag === "mobile" && hit.document.parent !== "") {
+            hit.document = _.extend(hit.document, { slug: hit.document.parent + "#" + hit.document.slug });
+          }
+          else if (hit.document.slug.indexOf("-hash-") > 0) {
             hit.document = _.extend(hit.document, { slug: hit.document.slug.replace('-hash-', '#') });
           }
 
